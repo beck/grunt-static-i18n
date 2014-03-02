@@ -46,9 +46,11 @@ describe('save', function() {
 });
 
 describe('static i18n task', function() {
-  it('should create a file for french', function() {
+  it('should create a file for each language', function() {
     var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
     var f = path.join(i18n, 'fr', 'static', 'data.json');
+    assert.ok(grunt.file.exists(f), 'Not found: ' + f);
+    f = path.join(i18n, 'en_GB', 'static', 'data.json');
     assert.ok(grunt.file.exists(f), 'Not found: ' + f);
   });
 });
