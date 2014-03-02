@@ -12,6 +12,9 @@ module.exports = function statici18n(grunt) {
 
   var options;
 
+  var beer = 'good';
+  statici18n.beer = beer;
+
   var plugin = function() {
     options = this.options({
       localeDir: 'locale',

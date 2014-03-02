@@ -24,7 +24,7 @@
   "devDependencies": {
     "grunt-contrib-clean": "0.5.x",
     "grunt-contrib-jshint": "0.8.x",
-    "grunt-contrib-nodeunit": "0.3.x",
+    "grunt-simple-mocha": "*",
     "grunt": "0.4.x",
     "jshint-stylish": "0.1.x",
     "load-grunt-tasks": "0.3.x"
