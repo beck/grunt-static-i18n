@@ -26,6 +26,8 @@ module.exports = function(grunt) {
       }
     },
 
+    clean: ['test/fixtures/app/i18n'],
+
     simplemocha: {
       options: {
         reporter: 'spec'

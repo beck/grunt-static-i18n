@@ -9,8 +9,25 @@
 'use strict';
 
 module.exports = function statici18n(grunt) {
+  var path = require('path');
 
   var options;
+
+  var save = function(file, lang, content) {
+    var langDir = path.join(file.orig.dest, lang);
+    var dest = file.dest.replace(file.orig.dest, langDir);
+    grunt.file.write(dest, content);
+    grunt.log.writeln('File "' + dest + '" created.');
+  };
+
+  var saveEachTranslation = function() {
+    var file = this; // passed via map
+    var locales = ['fr'];
+    var translated = { 'fr': 'lol' };
+    locales.forEach(function(lang) {
+      save(file, lang, translated[lang]);
+    });
+  };
 
   var exists = function(filepath) {
     if (!grunt.file.exists(filepath)) {
@@ -29,7 +46,8 @@ module.exports = function statici18n(grunt) {
 
     this.files.forEach(function task(file) {
       file.src
-        .filter(exists);
+        .filter(exists)
+        .map(saveEachTranslation, file);
     });
   };
 
