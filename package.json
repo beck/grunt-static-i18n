@@ -27,7 +27,8 @@
     "grunt-simple-mocha": "*",
     "grunt": "0.4.x",
     "jshint-stylish": "0.1.x",
-    "load-grunt-tasks": "0.3.x"
+    "load-grunt-tasks": "0.3.x",
+    "sinon": "1.8.x"
   },
   "scripts": {
     "test": "grunt test"
