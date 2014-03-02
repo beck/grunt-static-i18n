@@ -48,12 +48,10 @@ module.exports = function(grunt) {
     },
 
     abideCreate: {
-      fixture: {
-        options: {
-          template: '<%= xgettext.options.potFile %>',
-          languages: ['en-gb', 'fr'],  // fancy, changes to locales on create
-          localeDir: 'test/fixtures/app/locale',
-        }
+      options: {
+        template: '<%= xgettext.options.potFile %>',
+        languages: ['en-gb', 'fr'],  // fancy, changes to locales on create
+        localeDir: 'test/fixtures/app/locale',
       }
     }
 

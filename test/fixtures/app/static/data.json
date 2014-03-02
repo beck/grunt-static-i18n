@@ -1,1 +1,4 @@
-["_('Hello World')"]
+[
+  "__MSG_this will one day work__",
+  "_('Hello World')",
+]
