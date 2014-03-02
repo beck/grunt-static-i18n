@@ -21,9 +21,21 @@ module.exports = function statici18n(grunt) {
   };
   statici18n.save = save;
 
+  var getLocales = function() {
+    var locales = grunt.file.expand({
+      filter: 'isDirectory',
+      cwd: options.localeDir
+    }, '*');
+    if (locales.length < 1) {
+      grunt.fail.warn('Unable to find any languages in locale directory.');
+    }
+    locales.pop('template');
+    return locales;
+  };
+
   var saveEachTranslation = function() {
     var file = this; // passed via map
-    var locales = ['fr'];
+    var locales = getLocales();
     var translated = { 'fr': 'lol' };
     locales.forEach(function(lang) {
       save(file, lang, translated[lang]);
