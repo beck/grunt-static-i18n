@@ -22,6 +22,8 @@
     }
   ],
   "devDependencies": {
+    "grunt-gettext": "0.1.x",
+    "grunt-i18n-abide": "0.0.x",
     "grunt-contrib-clean": "0.5.x",
     "grunt-contrib-jshint": "0.8.x",
     "grunt-simple-mocha": "*",
