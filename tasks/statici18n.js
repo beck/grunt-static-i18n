@@ -12,8 +12,15 @@ module.exports = function statici18n(grunt) {
 
   var options;
 
-  var beer = 'good';
-  statici18n.beer = beer;
+  var exists = function(filepath) {
+    if (!grunt.file.exists(filepath)) {
+      grunt.log.warn('Source file "' + filepath + '" not found.');
+      return false;
+    } else {
+      return true;
+    }
+  };
+  statici18n.exists = exists;
 
   var plugin = function() {
     options = this.options({
@@ -21,7 +28,8 @@ module.exports = function statici18n(grunt) {
     });
 
     this.files.forEach(function task(file) {
-      file.src.map();
+      file.src
+        .filter(exists);
     });
   };
 
