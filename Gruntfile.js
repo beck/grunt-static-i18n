@@ -53,6 +53,20 @@ module.exports = function(grunt) {
         languages: ['en-gb', 'fr'],  // fancy, changes to locales on create
         localeDir: 'test/fixtures/app/locale',
       }
+    },
+
+    statici18n: {
+      options: {
+        localeDir: '<%= abideCreate.options.localeDir %>'
+      },
+      translateFixtureApp: {
+        files: [{
+          expand: true,
+          cwd: 'test/fixtures/app',
+          src: '**/*.json',
+          dest: 'i18n'
+        }]
+      }
     }
 
   });
@@ -63,7 +77,7 @@ module.exports = function(grunt) {
   grunt.registerTask('makemessages', [
     'xgettext', 'xgettext', 'abideCreate'
   ]);
-  grunt.registerTask('test', ['simplemocha']);
+  grunt.registerTask('test', ['statici18n', 'simplemocha']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
