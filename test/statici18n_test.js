@@ -23,6 +23,28 @@ describe('exists', function() {
   });
 });
 
+describe('save', function() {
+  before(function() {
+    sinon.stub(grunt.log, 'writeln');
+    sinon.stub(grunt.file, 'write');
+    var file = {
+      dest: 'dest/file.txt',
+      orig: { 'dest': 'dest' }
+    };
+    statici18n.save(file, 'es', 'content');
+  });
+  after(function() {
+    grunt.file.write.restore();
+    grunt.log.writeln.restore();
+  });
+  it('should call grunt.write', function() {
+    sinon.assert.calledOnce(grunt.file.write);
+  });
+  it('should add lang to destination', function() {
+    sinon.assert.calledWith(grunt.file.write, 'dest/es/file.txt', 'content');
+  });
+});
+
 describe('static i18n task', function() {
   it('should create a file for french', function() {
     var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');

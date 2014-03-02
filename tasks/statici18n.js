@@ -19,6 +19,7 @@ module.exports = function statici18n(grunt) {
     grunt.file.write(dest, content);
     grunt.log.writeln('File "' + dest + '" created.');
   };
+  statici18n.save = save;
 
   var saveEachTranslation = function() {
     var file = this; // passed via map

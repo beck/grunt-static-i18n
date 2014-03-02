@@ -65,8 +65,8 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'test/fixtures/app',
-          src: '**/*.json',
-          dest: 'i18n'
+          src: 'static/*.json',
+          dest: 'test/fixtures/app/i18n'
         }]
       }
     }
@@ -79,7 +79,7 @@ module.exports = function(grunt) {
   grunt.registerTask('makemessages', [
     'xgettext', 'xgettext', 'abideCreate'
   ]);
-  grunt.registerTask('test', ['statici18n', 'simplemocha']);
+  grunt.registerTask('test', ['clean', 'statici18n', 'simplemocha']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
