@@ -18,7 +18,7 @@ app
 ```
 
 And you need to translate `data.json`.  
-Staticic internationalization would like like:
+Static internationalization would like like:
 
 ```
 app
@@ -59,21 +59,21 @@ In your project's Gruntfile, add a section named `statici18n` to the data
 object passed into `grunt.initConfig()`: 
 
 ```js
-  grunt.initConfig({
-    statici18n: {
-      options: {
-        localeDir: 'app/locale'
-      },
-      myAppTask: {
-        files: [{
-          expand: true,
-          cwd: 'app',
-          src: 'static/*.json',
-          dest: 'app/i18n'
-        }]
-      }
+grunt.initConfig({
+  statici18n: {
+    options: {
+      localeDir: 'app/locale'
+    },
+    myAppTask: {
+      files: [{
+        expand: true,
+        cwd: 'app',
+        src: 'static/*.json',
+        dest: 'app/i18n'
+      }]
     }
-  })
+  }
+})
 ```
 
 ### Options
