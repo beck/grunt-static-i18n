@@ -54,9 +54,9 @@ describe('static i18n task', function() {
     assert.ok(grunt.file.exists(en), 'Not found: ' + en);
   });
   it('should translate french', function() {
-    assert.equal('["Bonjour tout le monde"]', grunt.file.read(fr));
+    assert.equal('["Bonjour tout le monde"]\n', grunt.file.read(fr));
   });
   it('should translate english', function() {
-    assert.equal('["Hello World"]', grunt.file.read(en));
+    assert.equal('["Hello World"]\n', grunt.file.read(en));
   });
 });
