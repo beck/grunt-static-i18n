@@ -2,91 +2,95 @@
 
 > Grunt plugin to translate static assets.
 
+Say you have:
+
+```
+app
+├── locale
+│   ├── en_GB
+│   │   └── LC_MESSAGES
+│   │       └── messages.po
+│   └── fr
+│       └── LC_MESSAGES
+│           └── messages.po
+└── static
+    └── data.json  // content: ["_('Hello World')"]
+```
+
+And you need to translate `data.json`.  
+Staticic internationalization would like like:
+
+```
+app
+├── i18n
+│   ├── en_GB
+│   │   └── static
+│   │       └── data.json  // content: ["Hello World"]
+│   └── fr
+│       └── static
+│           └── data.json  // content: ["Bonjour tout le monde"]
+├── locale
+│   ├── en_GB
+│   │   └── LC_MESSAGES
+│   │       └── messages.po
+│   └── fr
+│       └── LC_MESSAGES
+│           └── messages.po
+└── static
+    └── data.json
+```
+
+
 ## Getting Started
-This plugin requires Grunt.
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+This plugin requires [Grunt](http://gruntjs.com/).
 
-```shell
-npm install statici18n --save-dev
-```
+Translations are done with node-gettext and you will need a proper
+gettext catalog (structure seen above).  If need help extracting translation
+strings, checkout [grunt-i18n-abide](https://www.npmjs.org/package/grunt-i18n-abide).
+Checkout the `makemessages` task in [Gruntfile.js](GruntFile.js).
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
-
-```js
-grunt.loadNpmTasks('statici18n');
-```
 
 ## The "statici18n" task
 
 ### Overview
-In your project's Gruntfile, add a section named `statici18n` to the data object passed into `grunt.initConfig()`.
+
+In your project's Gruntfile, add a section named `statici18n` to the data
+object passed into `grunt.initConfig()`: 
 
 ```js
-grunt.initConfig({
-  statici18n: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-})
+  grunt.initConfig({
+    statici18n: {
+      options: {
+        localeDir: 'app/locale'
+      },
+      myAppTask: {
+        files: [{
+          expand: true,
+          cwd: 'app',
+          src: 'static/*.json',
+          dest: 'app/i18n'
+        }]
+      }
+    }
+  })
 ```
 
 ### Options
 
-#### options.separator
+#### options.localeDir
 Type: `String`
-Default value: `',  '`
+Default value: `locale`
 
-A string value that is used to do something with whatever.
+Sometimes easiest to use a var, say `<%= abideCreate.options.localeDir %>`
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.template.interpolate
+Type: `RegEx`  
+Default: search for `_('msgid')` or `_("msgid")`
 
-A string value that is used to do something else with whatever else.
+Used to find gettext calls.  
+Sets [_.templateSettings.interpolate](http://lodash.com/docs#templateSettings_interpolate)
 
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  statici18n: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  statici18n: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
 
 ## License
 Copyright (c) 2014 Douglas Beck. Licensed under the MIT license.
