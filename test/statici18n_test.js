@@ -46,11 +46,17 @@ describe('save', function() {
 });
 
 describe('static i18n task', function() {
+  var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
+  var fr = path.join(i18n, 'fr', 'static', 'data.json');
+  var en = path.join(i18n, 'en_GB', 'static', 'data.json');
   it('should create a file for each language', function() {
-    var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
-    var f = path.join(i18n, 'fr', 'static', 'data.json');
-    assert.ok(grunt.file.exists(f), 'Not found: ' + f);
-    f = path.join(i18n, 'en_GB', 'static', 'data.json');
-    assert.ok(grunt.file.exists(f), 'Not found: ' + f);
+    assert.ok(grunt.file.exists(fr), 'Not found: ' + fr);
+    assert.ok(grunt.file.exists(en), 'Not found: ' + en);
+  });
+  it('should translate french', function() {
+    assert.equal('["Bonjour tout le monde"]', grunt.file.read(fr));
+  });
+  it('should translate english', function() {
+    assert.equal('["Hello World"]', grunt.file.read(en));
   });
 });
