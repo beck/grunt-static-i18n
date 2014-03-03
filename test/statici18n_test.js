@@ -22,3 +22,11 @@ describe('exists', function() {
     assert.ok(statici18n.exists(readme));
   });
 });
+
+describe('static i18n task', function() {
+  it('should create a file for french', function() {
+    var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
+    var f = path.join(i18n, 'fr', 'static', 'data.json');
+    assert.ok(grunt.file.exists(f), 'Not found: ' + f);
+  });
+});
