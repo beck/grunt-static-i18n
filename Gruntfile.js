@@ -77,7 +77,7 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   grunt.registerTask('makemessages', [
-    'xgettext', 'xgettext', 'abideCreate'
+    'xgettext', 'abideCreate'
   ]);
   grunt.registerTask('test', ['clean', 'statici18n', 'simplemocha']);
 

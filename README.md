@@ -48,7 +48,7 @@ This plugin requires [Grunt](http://gruntjs.com/).
 Translations are done with node-gettext and you will need a proper
 gettext catalog (structure seen above).  If need help extracting translation
 strings, checkout [grunt-i18n-abide](https://www.npmjs.org/package/grunt-i18n-abide).
-Checkout the `makemessages` task in [Gruntfile.js](GruntFile.js).
+Checkout the `makemessages` task in [Gruntfile.js](Gruntfile.js).
 
 
 ## The "statici18n" task
