@@ -49,7 +49,7 @@ module.exports = function statici18n(grunt) {
       filter: 'isDirectory',
       cwd: options.localeDir
     }, '*');
-    if (locales.length < 1) {
+    if (!locales.length) {
       grunt.fail.warn('Unable to find any languages in locale directory.');
     }
     locales.pop('template');
