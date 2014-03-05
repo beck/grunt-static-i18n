@@ -1,0 +1,14 @@
+{
+    /* Bi-directional text styles */
+    /* __MSG_msgid__ convetion used with chrome and opera */ 
+    
+    body {
+        direction: __MSG_bidi direction__;
+    }
+
+    header {
+        float: direction: __MSG_bidi header float__;
+        padding-right: __MSG_bidi header right__;
+    }
+
+}

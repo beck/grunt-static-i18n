@@ -1,3 +1,6 @@
 node_modules
 npm-debug.log
 tmp
+
+# generated test data
+test/fixtures/app/i18n

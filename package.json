@@ -1,5 +1,5 @@
 {
-  "name": "statici18n",
+  "name": "grunt-static-i18n",
   "version": "0.0.1",
   "description": "Grunt plugin to translate static assets.",
   "homepage": "https://github.com/beck/grunt-static-i18n",
@@ -27,7 +27,10 @@
     "grunt-simple-mocha": "*",
     "grunt": "0.4.x",
     "jshint-stylish": "0.1.x",
-    "load-grunt-tasks": "0.3.x"
+    "load-grunt-tasks": "0.3.x",
+    "lodash-node": "2.4.x",
+    "node-gettext": "0.2.x",
+    "sinon": "1.8.x"
   },
   "scripts": {
     "test": "grunt test"
