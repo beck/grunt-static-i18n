@@ -4,5 +4,6 @@ tmp
 
 # generated test data
 test/fixtures/app/i18n
-/coverage/
-/coverage.html
+coverage
+coverage.html
+lcov.info

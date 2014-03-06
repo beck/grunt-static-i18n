@@ -1,5 +1,8 @@
 # Static Internationalization
 
+[![Build Status](https://api.travis-ci.org/beck/grunt-static-i18n.png)](https://travis-ci.org/beck/grunt-static-i18n)
+[![Coverage Status](https://coveralls.io/repos/beck/grunt-static-i18n/badge.png)](https://coveralls.io/r/beck/grunt-static-i18n)
+
 > Grunt plugin to translate static assets.
 
 Say you have:

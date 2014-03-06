@@ -43,19 +43,36 @@ module.exports = function(grunt) {
     },
 
     mochaTest: {
-      test: {
+      'spec': {
         options: {
           reporter: 'spec',
         },
         src: ['coverage/test/**/*.js']
       },
-      coverage: {
+      'html-cov': {
         options: {
           reporter: 'html-cov',
           quiet: true,
           captureFile: 'coverage.html'
         },
         src: ['coverage/test/**/*.js']
+      },
+      'mocha-lcov-reporter': {
+        options: {
+          reporter: 'mocha-lcov-reporter',
+          quiet: true,
+          captureFile: 'lcov.info'
+        },
+        src: ['coverage/test/**/*.js']
+      }
+    },
+
+    coveralls: {
+      options: {
+        force: true
+      },
+      all: {
+        src: 'lcov.info'
       }
     },
 
@@ -99,14 +116,13 @@ module.exports = function(grunt) {
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
+
+  // helper task for creating fixture locale
   grunt.registerTask('makemessages', ['xgettext', 'abideCreate']);
 
-  grunt.registerTask('unitTest', [
+  grunt.registerTask('default', [
     'clean', 'clean', 'statici18n', 'blanket', 'copy', 'mochaTest'
   ]);
-
-  // 'test' is for travis, 'default' is for local
-  grunt.registerTask('test', ['jshint', 'unitTest']);
-  grunt.registerTask('default', 'unitTest');
+  grunt.registerTask('ci', ['jshint', 'default', 'coveralls']);
 
 };
