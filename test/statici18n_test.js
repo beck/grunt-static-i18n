@@ -18,7 +18,7 @@ describe('exists', function() {
     sinon.assert.calledOnce(grunt.log.warn);
   });
   it('returns true with some real file', function() {
-    var readme = path.join(__dirname, '..', 'README.md');
+    var readme = path.join(__dirname, 'fixtures/app/static/data.json');
     assert.ok(statici18n.exists(readme));
   });
 });
