@@ -91,6 +91,9 @@ Default: search for `_('msgid')` or `_("msgid")`
 Used to find gettext calls.  
 Sets [_.templateSettings.interpolate](http://lodash.com/docs#templateSettings_interpolate)
 
+## Tests
+
+Run `grunt && open coverage.html`
 
 ## License
 Copyright (c) 2014 Douglas Beck. Licensed under the MIT license.

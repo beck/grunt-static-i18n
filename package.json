@@ -24,13 +24,15 @@
   "devDependencies": {
     "grunt-contrib-clean": "0.5.x",
     "grunt-contrib-jshint": "0.8.x",
-    "grunt-simple-mocha": "*",
     "grunt": "0.4.x",
     "jshint-stylish": "0.1.x",
     "load-grunt-tasks": "0.3.x",
     "lodash-node": "2.4.x",
     "node-gettext": "0.2.x",
-    "sinon": "1.8.x"
+    "sinon": "1.8.x",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-blanket": "0.0.8",
+    "grunt-mocha-test": "~0.9.4"
   },
   "scripts": {
     "test": "grunt test"

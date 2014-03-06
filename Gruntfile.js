@@ -26,13 +26,37 @@ module.exports = function(grunt) {
       }
     },
 
-    clean: ['test/fixtures/app/i18n'],
+    clean: ['test/fixtures/app/i18n', 'coverage'],
 
-    simplemocha: {
-      options: {
-        reporter: 'spec'
+    copy: {
+      coverage: {
+        src: ['test/**'],
+        dest: 'coverage/'
+      }
+    },
+
+    blanket: {
+      coverage: {
+        src: ['tasks/'],
+        dest: 'coverage/tasks/'
+      }
+    },
+
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+        },
+        src: ['coverage/test/**/*.js']
       },
-      all: { src: ['test/**/*_test.js'] }
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          quiet: true,
+          captureFile: 'coverage.html'
+        },
+        src: ['coverage/test/**/*.js']
+      }
     },
 
     // abideExtract is limited by the parsers used in jsxgettext
@@ -75,13 +99,14 @@ module.exports = function(grunt) {
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
+  grunt.registerTask('makemessages', ['xgettext', 'abideCreate']);
 
-  grunt.registerTask('makemessages', [
-    'xgettext', 'abideCreate'
+  grunt.registerTask('unitTest', [
+    'clean', 'clean', 'statici18n', 'blanket', 'copy', 'mochaTest'
   ]);
-  grunt.registerTask('test', ['clean', 'statici18n', 'simplemocha']);
 
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  // 'test' is for travis, 'default' is for local
+  grunt.registerTask('test', ['jshint', 'unitTest']);
+  grunt.registerTask('default', 'unitTest');
 
 };
