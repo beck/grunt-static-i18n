@@ -34,7 +34,7 @@
     "grunt-blanket": "0.0.8",
     "grunt-mocha-test": "~0.9.4",
     "mocha-lcov-reporter": "0.0.1",
-    "grunt-coveralls": "~0.3.0"
+    "grunt-karma-coveralls": "~2.4.0"
   },
   "scripts": {
     "test": "grunt ci"

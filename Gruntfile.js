@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'mocha-lcov-reporter',
           quiet: true,
-          captureFile: 'lcov.info'
+          captureFile: 'coverage/lcov.info'
         },
         src: ['coverage/test/**/*.js']
       }
@@ -69,10 +69,10 @@ module.exports = function(grunt) {
 
     coveralls: {
       options: {
+        debug: true,
+        coverage_dir: 'coverage',
+        dryRun: false,
         force: true
-      },
-      all: {
-        src: 'lcov.info'
       }
     },
 
