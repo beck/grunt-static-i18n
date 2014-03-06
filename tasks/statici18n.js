@@ -114,6 +114,10 @@ module.exports = function statici18n(grunt) {
     locales = getLocales();
     loadTranslations();
 
+    if (!this.files.length) {
+      grunt.log.warn('No files provided for translation.');
+    }
+
     this.files.forEach(function task(file) {
       file.src
         .filter(exists)
