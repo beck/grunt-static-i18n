@@ -46,6 +46,14 @@ describe('save', function() {
 });
 
 describe('static i18n task', function() {
+  before(function(done) {
+    var ChildProcess = require('cover-child-process').ChildProcess;
+    var Blanket = require('cover-child-process').Blanket;
+    var childProcess = new ChildProcess(new Blanket());
+    var gruntExec = 'node ' + path.resolve('node_modules/.bin/grunt');
+    var fixtures = path.join(__dirname, 'fixtures');
+    childProcess.exec(gruntExec, {cwd: fixtures},  done);
+  });
   var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
   var fr = path.join(i18n, 'fr', 'static', 'data.json');
   var pt = path.join(i18n, 'pt_BR', 'static', 'data.json');

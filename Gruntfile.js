@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       }
     },
 
-    clean: ['test/fixtures/app/i18n', 'coverage'],
+    clean: ['coverage'],
 
     copy: {
       coverage: {
@@ -109,20 +109,6 @@ module.exports = function(grunt) {
       }
     },
 
-    statici18n: {
-      options: {
-        localeDir: '<%= abideCreate.testAppCatalogs.options.localeDir %>'
-      },
-      translateFixtureApp: {
-        files: [{
-          expand: true,
-          cwd: 'test/fixtures/app',
-          src: 'static/*.json',
-          dest: 'test/fixtures/app/i18n'
-        }]
-      }
-    }
-
   });
 
   // Actually load this plugin's task(s).
@@ -133,7 +119,7 @@ module.exports = function(grunt) {
     'xgettext', 'abideCreate', 'abideMerge'
   ]);
   grunt.registerTask('test', [
-    'clean', 'statici18n', 'blanket', 'copy', 'mochaTest'
+    'clean', 'blanket', 'copy', 'mochaTest'
   ]);
   grunt.registerTask('default', ['test']);
   grunt.registerTask('ci', ['jshint', 'test', 'coveralls']);

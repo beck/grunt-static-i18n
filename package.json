@@ -38,7 +38,9 @@
     "mocha-lcov-reporter": "0.0.1",
     "grunt-karma-coveralls": "~2.4.0",
     "grunt-xgettext": "~0.2.0",
-    "grunt-i18n-abide": "0.0.9"
+    "grunt-i18n-abide": "0.0.9",
+    "cover-child-process": "~0.1.5",
+    "grunt-cli": "0.1.13"
   },
   "scripts": {
     "test": "grunt ci"
