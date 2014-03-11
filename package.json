@@ -26,21 +26,21 @@
     "node-gettext": "0.2.x"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "0.5.x",
-    "grunt-contrib-jshint": "0.8.x",
+    "cover-child-process": "0.1.x",
     "grunt": "0.4.x",
+    "grunt-blanket": "0.0.8",
+    "grunt-cli": "0.1.x",
+    "grunt-contrib-jshint": "0.8.x",
+    "grunt-contrib-clean": "0.5.x",
+    "grunt-contrib-copy": "0.5.x",
+    "grunt-i18n-abide": "0.0.9",
+    "grunt-karma-coveralls": "2.4.x",
+    "grunt-mocha-test": "0.9.x",
+    "grunt-xgettext": "0.2.x",
     "jshint-stylish": "0.1.x",
     "load-grunt-tasks": "0.3.x",
-    "sinon": "1.8.x",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-blanket": "0.0.8",
-    "grunt-mocha-test": "~0.9.4",
     "mocha-lcov-reporter": "0.0.1",
-    "grunt-karma-coveralls": "~2.4.0",
-    "grunt-xgettext": "~0.2.0",
-    "grunt-i18n-abide": "0.0.9",
-    "cover-child-process": "~0.1.5",
-    "grunt-cli": "0.1.13"
+    "sinon": "1.8.x"
   },
   "scripts": {
     "test": "grunt ci"
