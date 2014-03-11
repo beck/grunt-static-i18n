@@ -132,10 +132,10 @@ module.exports = function(grunt) {
   grunt.registerTask('makemessages', [
     'xgettext', 'abideCreate', 'abideMerge'
   ]);
-
-  grunt.registerTask('default', [
-    'clean', 'clean', 'statici18n', 'blanket', 'copy', 'mochaTest'
+  grunt.registerTask('test', [
+    'clean', 'statici18n', 'blanket', 'copy', 'mochaTest'
   ]);
-  grunt.registerTask('ci', ['jshint', 'default', 'coveralls']);
+  grunt.registerTask('default', ['test']);
+  grunt.registerTask('ci', ['jshint', 'test', 'coveralls']);
 
 };
