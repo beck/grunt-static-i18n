@@ -36,7 +36,9 @@
     "grunt-blanket": "0.0.8",
     "grunt-mocha-test": "~0.9.4",
     "mocha-lcov-reporter": "0.0.1",
-    "grunt-karma-coveralls": "~2.4.0"
+    "grunt-karma-coveralls": "~2.4.0",
+    "grunt-xgettext": "~0.2.0",
+    "grunt-i18n-abide": "0.0.9"
   },
   "scripts": {
     "test": "grunt ci"
