@@ -17,7 +17,8 @@ module.exports = function statici18n(grunt) {
   var gt = new Gettext();
   var options, locales;
 
-  var save = function(file, lang, content) {
+  var save = function(file, content, lang) {
+    lang = lang || '';
     var langDir = path.join(file.orig.dest, lang);
     var dest = file.dest.replace(file.orig.dest, langDir);
     grunt.file.write(dest, content);
@@ -28,8 +29,9 @@ module.exports = function statici18n(grunt) {
   var saveEachTranslation = function(translated) {
     var file = this; // passed via map
     locales.forEach(function(lang) {
-      save(file, lang, translated[lang]);
+      save(file, translated[lang], lang);
     });
+    save(file, translated._default);
   };
 
   var loadTranslations = function() {
@@ -89,6 +91,11 @@ module.exports = function statici18n(grunt) {
       gt.textdomain(lang);
       translated[lang] = compiled();
     });
+
+    // add a language free default
+    gt.textdomain('_default');
+    translated._default = compiled();
+
     return translated;
   };
 
