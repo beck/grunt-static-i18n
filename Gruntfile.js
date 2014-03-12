@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       }
     },
 
-    clean: ['test/fixtures/app/i18n', 'coverage'],
+    clean: ['coverage'],
 
     copy: {
       coverage: {
@@ -91,26 +91,23 @@ module.exports = function(grunt) {
     },
 
     abideCreate: {
-      options: {
-        template: '<%= xgettext.options.potFile %>',
-        languages: ['en-gb', 'fr'],  // fancy, changes to locales on create
-        localeDir: 'test/fixtures/app/locale',
+      testAppCatalogs: {
+        options: {
+          template: '<%= xgettext.options.potFile %>',
+          languages: ['pt-br', 'fr'],  // fancy, changes to locales on create
+          localeDir: 'test/fixtures/app/locale',
+        }
       }
     },
 
-    statici18n: {
-      options: {
-        localeDir: '<%= abideCreate.options.localeDir %>'
-      },
-      translateFixtureApp: {
-        files: [{
-          expand: true,
-          cwd: 'test/fixtures/app',
-          src: 'static/*.json',
-          dest: 'test/fixtures/app/i18n'
-        }]
+    abideMerge: {
+      testAppPoFiles: {
+        options: {
+          template: '<%= xgettext.options.potFile %>',
+          localeDir: '<%= abideCreate.testAppCatalogs.options.localeDir %>',
+        }
       }
-    }
+    },
 
   });
 
@@ -118,11 +115,13 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // helper task for creating fixture locale
-  grunt.registerTask('makemessages', ['xgettext', 'abideCreate']);
-
-  grunt.registerTask('default', [
-    'clean', 'clean', 'statici18n', 'blanket', 'copy', 'mochaTest'
+  grunt.registerTask('makemessages', [
+    'xgettext', 'abideCreate', 'abideMerge'
   ]);
-  grunt.registerTask('ci', ['jshint', 'default', 'coveralls']);
+  grunt.registerTask('test', [
+    'clean', 'blanket', 'copy', 'mochaTest'
+  ]);
+  grunt.registerTask('default', ['test']);
+  grunt.registerTask('ci', ['jshint', 'test', 'coveralls']);
 
 };

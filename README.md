@@ -8,39 +8,45 @@
 Say you have:
 
 ```
-app
-├── locale
-│   ├── en_GB
-│   │   └── LC_MESSAGES
-│   │       └── messages.po
-│   └── fr
-│       └── LC_MESSAGES
-│           └── messages.po
-└── static
-    └── data.json  // content: ["_('Hello World')"]
+app/
+├── Gruntfile.js
+└── app
+    ├── locale
+    │   ├── fr
+    │   │   └── LC_MESSAGES
+    │   │       └── messages.po
+    │   └── pt_BR
+    │       └── LC_MESSAGES
+    │           └── messages.po
+    └── static
+        └── data.json  // content: ["_('Hello World')"]
 ```
 
 And you need to translate `data.json`.  
 Static internationalization would like like:
 
 ```
-app
-├── i18n
-│   ├── en_GB
-│   │   └── static
-│   │       └── data.json  // content: ["Hello World"]
-│   └── fr
-│       └── static
-│           └── data.json  // content: ["Bonjour tout le monde"]
-├── locale
-│   ├── en_GB
-│   │   └── LC_MESSAGES
-│   │       └── messages.po
-│   └── fr
-│       └── LC_MESSAGES
-│           └── messages.po
-└── static
-    └── data.json
+app/
+├── Gruntfile.js
+└── app
+    ├── i18n
+    │   ├── fr
+    │   │   └── static
+    │   │       └── data.json  // content: ["Bonjour tout le monde"]
+    │   ├── pt_BR
+    │   │   └── static
+    │   │       └── data.json // content: ["Olá mundo"]
+    │   └── static
+    │       └── data.json  // not translated: ["Hello World"]
+    ├── locale
+    │   ├── fr
+    │   │   └── LC_MESSAGES
+    │   │       └── messages.po
+    │   └── pt_BR
+    │       └── LC_MESSAGES
+    │           └── messages.po
+    └── static
+        └── data.json
 ```
 
 
@@ -97,6 +103,12 @@ Sets [_.templateSettings.interpolate](http://lodash.com/docs#templateSettings_in
 ## Tests
 
 Run `grunt && open coverage.html`
+
+## Release History
+
+* 0.1.0 - render non-language defaults to destination
+* 0.0.2 - add coverage reporting
+* 0.0.1 - initial release
 
 ## License
 Copyright (c) 2014 Douglas Beck. Licensed under the MIT license.
