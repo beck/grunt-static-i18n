@@ -54,7 +54,7 @@ describe('save', function() {
 
 });
 
-describe('static i18n task', function() {
+describe('static i18n', function() {
 
   before(function(done) {
     var ChildProcess = require('cover-child-process').ChildProcess;
@@ -65,30 +65,64 @@ describe('static i18n task', function() {
     childProcess.exec(gruntExec, {cwd: fixtures},  done);
   });
 
-  var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
-  var fr = path.join(i18n, 'fr', 'static', 'data.json');
-  var pt = path.join(i18n, 'pt_BR', 'static', 'data.json');
-  var def = path.join(i18n, 'static', 'data.json');
+  describe('of json files', function() {
 
-  it('should create a file for each language', function() {
-    assert.ok(grunt.file.exists(fr), 'Not found: ' + fr);
-    assert.ok(grunt.file.exists(pt), 'Not found: ' + pt);
+    var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
+    var fr = path.join(i18n, 'fr', 'static', 'data.json');
+    var pt = path.join(i18n, 'pt_BR', 'static', 'data.json');
+    var def = path.join(i18n, 'static', 'data.json');
+
+    it('should create a file for each language', function() {
+      assert.ok(grunt.file.exists(fr), 'Not found: ' + fr);
+      assert.ok(grunt.file.exists(pt), 'Not found: ' + pt);
+    });
+
+    it('should create a non-language default', function() {
+      assert.ok(grunt.file.exists(def), 'Not found: ' + def);
+    });
+
+    it('should not translate the default', function() {
+      assert.equal('["Hello World"]\n', grunt.file.read(def));
+    });
+
+    it('should translate french', function() {
+      assert.equal('["Bonjour tout le monde"]\n', grunt.file.read(fr));
+    });
+
+    it('should translate english', function() {
+      assert.equal('["Olá mundo"]\n', grunt.file.read(pt));
+    });
+
   });
 
-  it('should create a non-language default', function() {
-    assert.ok(grunt.file.exists(def), 'Not found: ' + def);
-  });
+  describe('of javascript files', function() {
 
-  it('should not translate the default', function() {
-    assert.equal('["Hello World"]\n', grunt.file.read(def));
-  });
+    var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
+    var fr = path.join(i18n, 'fr', 'static', 'script.js');
+    var pt = path.join(i18n, 'pt_BR', 'static', 'script.js');
+    var def = path.join(i18n, 'static', 'script.js');
 
-  it('should translate french', function() {
-    assert.equal('["Bonjour tout le monde"]\n', grunt.file.read(fr));
-  });
+    it('should create a file for each language', function() {
+      assert.ok(grunt.file.exists(fr), 'Not found: ' + fr);
+      assert.ok(grunt.file.exists(pt), 'Not found: ' + pt);
+    });
 
-  it('should translate english', function() {
-    assert.equal('["Olá mundo"]\n', grunt.file.read(pt));
+    it('should create a non-language default', function() {
+      assert.ok(grunt.file.exists(def), 'Not found: ' + def);
+    });
+
+    it('should not translate the default', function() {
+      assert.equal('"Hello World";\n', grunt.file.read(def));
+    });
+
+    it('should translate french', function() {
+      assert.equal('"Bonjour tout le monde";\n', grunt.file.read(fr));
+    });
+
+    it('should translate english', function() {
+      assert.equal('"Olá mundo";\n', grunt.file.read(pt));
+    });
+
   });
 
 });
