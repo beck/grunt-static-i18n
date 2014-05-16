@@ -36,7 +36,7 @@ module.exports = function statici18n(grunt) {
 
   var loadTranslations = function() {
     locales.forEach(function readPo(lang) {
-      var po = path.join(options.localeDir, lang, 'LC_MESSAGES', 'messages.po');
+      var po = path.join(options.localeDir,lang,'LC_MESSAGES','messages.po');
       if (!grunt.file.exists(po)){
         grunt.log.warn('Translations not found: ' + po);
         return;
@@ -62,6 +62,9 @@ module.exports = function statici18n(grunt) {
     var text = gt.gettext(msgid);
     var lang = gt.textdomain();
     grunt.verbose.writeln('Gettext', lang, msgid, text);
+    if (gt.quoteText) {
+      text = '"' + text.replace(/"/, '\"') + '"';
+    }
     return text;
   };
 
@@ -81,6 +84,8 @@ module.exports = function statici18n(grunt) {
 
   var translate = function(filepath) {
     var translated = false;
+    // json files do not require gettext to return quoted translations
+    gt.quoteText = path.extname(filepath) !== '.json';
     var compiled = compileTemplate(filepath);
     if (!compiled) {
       return false;
