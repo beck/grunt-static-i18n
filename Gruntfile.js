@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'spec',
         },
-        src: ['coverage/test/**/*.js']
+        src: ['coverage/test/**/*-spec.js']
       },
       'html-cov': {
         options: {
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
           quiet: true,
           captureFile: 'coverage.html'
         },
-        src: ['coverage/test/**/*.js']
+        src: ['coverage/test/**/*-spec.js']
       },
       'mocha-lcov-reporter': {
         options: {
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
           quiet: true,
           captureFile: 'coverage/lcov.info'
         },
-        src: ['coverage/test/**/*.js']
+        src: ['coverage/test/**/*-spec.js']
       }
     },
 
