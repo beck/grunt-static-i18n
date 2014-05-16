@@ -89,7 +89,7 @@ describe('static i18n', function() {
       assert.equal('["Bonjour tout le monde"]\n', grunt.file.read(fr));
     });
 
-    it('should translate english', function() {
+    it('should translate portuguese', function() {
       assert.equal('["Olá mundo"]\n', grunt.file.read(pt));
     });
 
@@ -119,7 +119,7 @@ describe('static i18n', function() {
       assert.equal('"Bonjour tout le monde";\n', grunt.file.read(fr));
     });
 
-    it('should translate english', function() {
+    it('should translate portuguese', function() {
       assert.equal('"Olá mundo";\n', grunt.file.read(pt));
     });
 
