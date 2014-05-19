@@ -15,7 +15,7 @@ module.exports = function statici18n(grunt) {
   var Gettext = require('node-gettext');
 
   var gt = new Gettext();
-  var options, locales;
+  var locales;
 
   var save = function(file, content, lang) {
     lang = lang || '';
@@ -36,7 +36,9 @@ module.exports = function statici18n(grunt) {
 
   var loadTranslations = function() {
     locales.forEach(function readPo(lang) {
-      var po = path.join(options.localeDir,lang,'LC_MESSAGES','messages.po');
+      var po = path.join(
+        statici18n.options.localeDir, lang, 'LC_MESSAGES', 'messages.po'
+      );
       if (!grunt.file.exists(po)){
         grunt.log.warn('Translations not found: ' + po);
         return;
@@ -49,14 +51,20 @@ module.exports = function statici18n(grunt) {
   var getLocales = function() {
     var locales = grunt.file.expand({
       filter: 'isDirectory',
-      cwd: options.localeDir
+      cwd: statici18n.options.localeDir
     }, '*');
+
     if (!locales.length) {
       grunt.fail.warn('Unable to find any languages in locale directory.');
     }
-    locales.pop('template');
+
+    var index = locales.indexOf('template');
+    if (index > -1) {
+      locales.splice(index, 1);
+    }
     return locales;
   };
+  statici18n.getLocales = getLocales;
 
   var gettext = function(msgid) {
     var text = gt.gettext(msgid);
@@ -70,7 +78,7 @@ module.exports = function statici18n(grunt) {
 
   var compileTemplate = function(filepath) {
     var compiled;
-    _.templateSettings = options.template;
+    _.templateSettings = statici18n.options.template;
     try {
       return compiled = _.template(grunt.file.read(filepath));
     } catch (e) {
@@ -115,7 +123,7 @@ module.exports = function statici18n(grunt) {
   statici18n.exists = exists;
 
   var plugin = function() {
-    options = this.options({
+    statici18n.options = this.options({
       localeDir: 'locale',
       template: {
         interpolate: /(_\((?:'[^']+?'|"[^"]+")\))/g,

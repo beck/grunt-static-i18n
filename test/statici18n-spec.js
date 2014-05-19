@@ -54,6 +54,27 @@ describe('save', function() {
 
 });
 
+describe('get locales', function() {
+
+  after(function() {
+    grunt.fail.warn.restore();
+  });
+
+  it('returns all locales found in fixture', function() {
+    var localeDir = path.join(__dirname, 'fixtures', 'app', 'locale');
+    statici18n.options = { 'localeDir': localeDir };
+    assert.deepEqual(['fr', 'pt_BR', 'zu'], statici18n.getLocales());
+  });
+
+  it('failes when no locales are found', function() {
+    sinon.stub(grunt.fail, 'warn');
+    statici18n.options = { 'localeDir': 'nonexistent directory' };
+    statici18n.getLocales();
+    sinon.assert.calledOnce(grunt.fail.warn);
+  });
+
+});
+
 describe('static i18n', function() {
 
   before(function(done) {
@@ -70,6 +91,7 @@ describe('static i18n', function() {
     var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
     var fr = path.join(i18n, 'fr', 'static', 'data.json');
     var pt = path.join(i18n, 'pt_BR', 'static', 'data.json');
+    var zu = path.join(i18n, 'zu', 'static', 'data.json');
     var def = path.join(i18n, 'static', 'data.json');
 
     it('should create a file for each language', function() {
@@ -93,6 +115,10 @@ describe('static i18n', function() {
       assert.equal('["Olá mundo"]\n', grunt.file.read(pt));
     });
 
+    it('should translate zulu', function() {
+      assert.equal('["Sawubona Mhlaba"]\n', grunt.file.read(zu));
+    });
+
   });
 
   describe('of javascript files', function() {
@@ -100,6 +126,7 @@ describe('static i18n', function() {
     var i18n = path.join(__dirname, 'fixtures', 'app', 'i18n');
     var fr = path.join(i18n, 'fr', 'static', 'script.js');
     var pt = path.join(i18n, 'pt_BR', 'static', 'script.js');
+    var zu = path.join(i18n, 'zu', 'static', 'script.js');
     var def = path.join(i18n, 'static', 'script.js');
 
     it('should create a file for each language', function() {
@@ -121,6 +148,10 @@ describe('static i18n', function() {
 
     it('should translate portuguese', function() {
       assert.equal('"Olá mundo";\n', grunt.file.read(pt));
+    });
+
+    it('should translate zulu', function() {
+      assert.equal('"Sawubona Mhlaba";\n', grunt.file.read(zu));
     });
 
   });
