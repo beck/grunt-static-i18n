@@ -94,7 +94,7 @@ module.exports = function(grunt) {
       testAppCatalogs: {
         options: {
           template: '<%= xgettext.options.potFile %>',
-          languages: ['pt-br', 'fr'],  // fancy, changes to locales on create
+          languages: ['pt-br', 'fr', 'zu'],  // fancy, lang > locales on create
           localeDir: 'test/fixtures/app/locale',
         }
       }
