@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'app',
-          src: 'static/*.json',
+          src: 'static/*.{js,json}',
           dest: 'app/i18n'
         }]
       }
