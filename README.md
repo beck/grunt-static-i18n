@@ -106,6 +106,7 @@ Run `grunt && open coverage.html`
 
 ## Release History
 
+* 0.3.0 - fix issue with locale discovery
 * 0.2.0 - quote translated text when rendering javascript
 * 0.1.0 - render non-language defaults to destination
 * 0.0.2 - add coverage reporting

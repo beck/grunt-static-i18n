@@ -1,6 +1,6 @@
 {
   "name": "grunt-static-i18n",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Grunt plugin to translate static assets.",
   "homepage": "https://github.com/beck/grunt-static-i18n",
   "repository": "https://github.com/beck/grunt-static-i18n",
