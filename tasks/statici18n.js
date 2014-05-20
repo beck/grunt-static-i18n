@@ -37,7 +37,8 @@ module.exports = function statici18n(grunt) {
   var loadTranslations = function() {
     locales.forEach(function readPo(lang) {
       var po = path.join(
-        statici18n.options.localeDir, lang, 'LC_MESSAGES', 'messages.po'
+        statici18n.options.localeDir, lang, 'LC_MESSAGES',
+        statici18n.options.textDomain + '.po'
       );
       if (!grunt.file.exists(po)){
         grunt.log.warn('Translations not found: ' + po);
@@ -128,7 +129,8 @@ module.exports = function statici18n(grunt) {
       template: {
         interpolate: /(_\((?:'[^']+?'|"[^"]+")\))/g,
         imports: { '_': gettext }
-      }
+      },
+      textDomain: 'messages'
     });
 
     locales = getLocales();

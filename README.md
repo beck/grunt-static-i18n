@@ -100,12 +100,19 @@ Default: search for `_('msgid')` or `_("msgid")`
 Used to find gettext calls.  
 Sets [_.templateSettings.interpolate](http://lodash.com/docs#templateSettings_interpolate)
 
+#### options.textDomain
+Type: `String`
+Default value: `messages`
+
+Name of your po files: `locale/<lang>/LC_MESSAGES/<textDomain>.po`
+
 ## Tests
 
 Run `grunt && open coverage.html`
 
 ## Release History
 
+* 0.3.1 - add text domain to options
 * 0.3.0 - fix issue with locale discovery
 * 0.2.0 - quote translated text when rendering javascript
 * 0.1.0 - render non-language defaults to destination
