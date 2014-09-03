@@ -112,6 +112,7 @@ Run `grunt && open coverage.html`
 
 ## Release History
 
+* 0.3.2 - capture errors when compiling large templates
 * 0.3.1 - add text domain to options
 * 0.3.0 - fix issue with locale discovery
 * 0.2.0 - quote translated text when rendering javascript
