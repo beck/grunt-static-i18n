@@ -81,7 +81,7 @@ module.exports = function statici18n(grunt) {
     var compiled;
     _.templateSettings = statici18n.options.template;
     try {
-      return compiled = _.template(grunt.file.read(filepath));
+      compiled = _.template(grunt.file.read(filepath));
     } catch (e) {
       grunt.log.warn(
         'Failed to translate (probably an issue with quotes):',
@@ -89,6 +89,16 @@ module.exports = function statici18n(grunt) {
       );
       return false;
     }
+    try {
+      compiled();
+    } catch (e) {
+      grunt.log.warn(
+        'Failed to compile: ', filepath,
+        '\nIf template is over 900kb, must bump node’s stack size.\nError:', e
+      );
+      return false;
+    }
+    return compiled;
   };
 
   var translate = function(filepath) {
