@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "lodash-node": "2.4.x",
-    "node-gettext": "0.2.x"
+    "node-gettext": "1.x"
   },
   "devDependencies": {
     "cover-child-process": "0.1.x",
