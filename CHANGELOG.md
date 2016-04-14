@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3
+
+Bumps node-gettext, which uses "iconv-lite" instead of "iconv" and removes
+the need for native code compilation.
+
 ## 0.3.2
 
 Captures errors when compiling large templates.
