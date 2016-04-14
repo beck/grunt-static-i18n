@@ -47,6 +47,7 @@ module.exports = function statici18n(grunt) {
       var content = fs.readFileSync(po);
       gt.addTextdomain(lang, content);
     });
+    gt.addTextdomain('_default', null);
   };
 
   var getLocales = function() {
